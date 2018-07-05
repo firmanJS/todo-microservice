@@ -1,20 +1,6 @@
-#!/usr/bin/env groovy
-
-pipeline {
-
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
-    }
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
-                sh 'docker build /server/Dockerfile'
-            }
-        }
-    }
+node {
+    checkout scm
+    def customImage = docker.build("app:${env.BUILD_ID}", "./server/")
+    customImage.push()
+    customImage.push('latest')
 }
