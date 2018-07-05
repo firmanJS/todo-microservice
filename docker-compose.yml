@@ -1,0 +1,64 @@
+version: "2"
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    networks: 
+      microservice_default:
+        ipv4_address: 172.18.0.2
+      
+  app:
+    container_name: app
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./server/Dockerfile
+    ports:
+      - "8001:8001"
+    links:
+      - mongo
+      - users-services
+      - posts-services
+    networks: 
+      microservice_default:
+        ipv4_address: 172.18.0.5
+  users-services:
+    container_name: users-services
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./services/users/Dockerfile
+    depends_on:
+      - mongo
+    ports:
+      - "8003:8003"
+    links:
+      - mongo
+    networks: 
+      microservice_default:
+        ipv4_address: 172.18.0.4
+  posts-services:
+    container_name: posts-services
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./services/posts/Dockerfile
+    ports:
+      - "8005:8005"
+    links:
+      - mongo
+    networks: 
+      microservice_default:
+        ipv4_address: 172.18.0.3
+  
+networks: 
+  microservice_default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.18.0.0/16

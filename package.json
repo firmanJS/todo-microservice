@@ -1,0 +1,28 @@
+{
+  "name": "microservices",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:server": "nodemon server/index.js",
+    "dev:users-services": "nodemon services/users/users-services.js",
+    "dev:posts-services": "nodemon services/posts/posts-services.js",
+    "prod:server": "node index.js",
+    "prod:users-services": "node users-services.js",
+    "prod:posts-services": "node posts-services.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.1",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.0",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
+  }
+}
