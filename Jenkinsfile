@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'docker build /services/posts/Dockerfile'
+                sh 'docker build ./services/posts/Dockerfile'
             }
         }
         
