@@ -10,13 +10,7 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
-        stage('Deliver') {
-            steps {
-              
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                
-            }
-        }
+        
     }
     
 }
