@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'docker-compose -f build'
+                sh 'docker-compose build'
             }
         }
         stage('Deliver') {
