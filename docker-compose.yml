@@ -1,4 +1,4 @@
-version: "2"
+version: "2.1"
 services:
   mongo:
     container_name: mongo
@@ -7,10 +7,11 @@ services:
       - ./data:/data/db
     ports:
       - "27017:27017"
-    networks: 
-      microservice_default:
-        ipv4_address: 172.18.0.2
-      
+    healthcheck:
+      test: "exit 0"
+      interval: 10s
+      timeout: s
+      retries: 3 
   app:
     container_name: app
     restart: always
@@ -23,9 +24,6 @@ services:
       - mongo
       - users-services
       - posts-services
-    networks: 
-      microservice_default:
-        ipv4_address: 172.18.0.5
   users-services:
     container_name: users-services
     restart: always
@@ -33,14 +31,12 @@ services:
       context: .
       dockerfile: ./services/users/Dockerfile
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     ports:
       - "8003:8003"
     links:
       - mongo
-    networks: 
-      microservice_default:
-        ipv4_address: 172.18.0.4
   posts-services:
     container_name: posts-services
     restart: always
@@ -50,11 +46,7 @@ services:
     ports:
       - "8005:8005"
     links:
-      - mongo
-    networks: 
-      microservice_default:
-        ipv4_address: 172.18.0.3
-  
+      - mongo  
 networks: 
   microservice_default:
     driver: bridge

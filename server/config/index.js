@@ -2,9 +2,9 @@
 
 module.exports = {
   userConfig : {
-    URL: "http://172.18.0.4:8003"
+    URL: "http://users-services"
   },
   postConfig: {
-    URL: "172.18.0.3:8005"
+    URL: "posts-services"
   }
 };
