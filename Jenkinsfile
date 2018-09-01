@@ -7,11 +7,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...' 
-                       
-                sh 'set -x docker build -f ./database/mongo/Dockerfile . -t mongodb'
-                sh 'set -x docker build -f ./services/users/Dockerfile . -t microservices/users-services'
-                sh 'set -x docker build -f ./services/posts/Dockerfile . -t microservices/posts-services'
-                sh 'set -x docker build -f ./server/Dockerfile . -t microservices/app'
+                sh 'set -x'         
+                sh 'docker build -f ./database/mongo/Dockerfile . -t mongodb'
+                sh 'docker build -f ./services/users/Dockerfile . -t microservices/users-services'
+                sh 'docker build -f ./services/posts/Dockerfile . -t microservices/posts-services'
+                sh 'docker build -f ./server/Dockerfile . -t microservices/app'
             }
             
         }
