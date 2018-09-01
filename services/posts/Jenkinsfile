@@ -7,8 +7,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                chmod +x
-                sh 'docker build -f ./services/posts/Dockerfile .'
+                
+                sh 'set -x docker build -f ./services/posts/Dockerfile .'
             }
         }
         
