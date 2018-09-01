@@ -24,7 +24,7 @@ pipeline {
                 // sh 'docker run microservices/posts-services'
                 // sh 'docker run microservices/users-services'
                 // sh 'docker run microservices/app'
-                sh 'docker-compose up'
+                sh 'docker-compose up -d'
             }
         }
 
