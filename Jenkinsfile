@@ -17,6 +17,14 @@ pipeline {
             
         }
 
+        stage('Test') {
+            steps {
+                echo 'Testing...' 
+                sh 'exit 1'
+            }
+            
+        }
+
         stage('Deploy'){
             steps {
                 echo 'Deploy...'
