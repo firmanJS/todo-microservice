@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...' 
-                sh 'chmod -R ugo+rw .'
+                sh 'chmod -R r .'
                 
                 sh 'docker build -f ./services/users/Dockerfile . -t microservices/users-services'
                 sh 'docker build -f ./services/posts/Dockerfile . -t microservices/posts-services'
