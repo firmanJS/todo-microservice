@@ -18,7 +18,7 @@ pipeline {
         stage('Deploy'){
             steps {
                 echo 'Deploy...'
-                sh 'docker run mongodb'
+  
                 sh 'docker run microservices_posts-services'
                 sh 'docker run microservices_users-services'
                 sh 'docker run microservices_app'
