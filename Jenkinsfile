@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...' 
-                sh 'set +x'         
+                sh 'set +r'         
                 sh 'docker build -f ./database/mongo/Dockerfile . -t mongodb'
                 sh 'docker build -f ./services/users/Dockerfile . -t microservices/users-services'
                 sh 'docker build -f ./services/posts/Dockerfile . -t microservices/posts-services'
