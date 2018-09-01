@@ -1,4 +1,4 @@
 module.exports = {
-  MONGO_URI: "mongodb://mongodb/todo-microservices-dev",
+  MONGO_URI: "mongodb://mongo/todo-microservices-dev",
   PORT: 8005
 };
