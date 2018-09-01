@@ -7,9 +7,16 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'docker build -f ./services/posts/Dockerfile .'
+                sh 'docker-compose build'
             }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Building...'
+                sh 'docker-compose up'
+            }
+        }
+
         
     }
     

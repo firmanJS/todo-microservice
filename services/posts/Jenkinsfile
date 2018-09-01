@@ -8,9 +8,18 @@ pipeline {
             steps {
                 echo 'Building...'
                 
-                sh 'set -x docker build -f ./services/posts/Dockerfile .'
+                sh 'set -x docker build -f ./services/posts/Dockerfile . -t microservices_posts-services'
             }
         }
+
+        stage('Deploy'){
+            steps {
+                echo 'Deploy...'
+                sh 'docker run '
+            }
+        }
+
+
         
     }
     
