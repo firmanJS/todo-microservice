@@ -40,6 +40,9 @@ services:
   posts-services:
     container_name: posts-services
     restart: always
+    depends_on:
+      mongo:
+        condition: service_healthy
     build: 
       context: .
       dockerfile: ./services/posts/Dockerfile
