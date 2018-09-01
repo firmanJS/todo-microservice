@@ -9,9 +9,9 @@ pipeline {
                 echo 'Building...' 
                 sh 'set -x'         
                 sh 'docker build -f ./database/mongo/Dockerfile . -t mongodb'
-                sh 'docker build -f ./services/users/Dockerfile . -t microservices_users-services'
-                sh 'docker build -f ./services/posts/Dockerfile . -t microservices_posts-services'
-                sh 'docker build -f ./server/Dockerfile . -t microservices_app'
+                sh 'docker build -f ./services/users/Dockerfile . -t microservices/users-services'
+                sh 'docker build -f ./services/posts/Dockerfile . -t microservices/posts-services'
+                sh 'docker build -f ./server/Dockerfile . -t microservices/app'
             }
             
         }
@@ -20,9 +20,9 @@ pipeline {
             steps {
                 echo 'Deploy...'
   
-                sh 'docker run microservices_posts-services'
-                sh 'docker run microservices_users-services'
-                sh 'docker run microservices_app'
+                sh 'docker run microservices/posts-services'
+                sh 'docker run microservices/users-services'
+                sh 'docker run microservices/app'
             }
         }
 
